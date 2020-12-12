@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Management
 {
-    internal sealed class GameStarter : MonoBehaviour
+    internal sealed class Game : MonoBehaviour
     {
         [SerializeField] private HUDView _hudViewPrefab;
         [SerializeField] private PlayerSpawner _playerSpawnerPrefab;
