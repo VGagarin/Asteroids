@@ -11,7 +11,7 @@ namespace Management
         [SerializeField] private EnemySpawner _enemySpawnerPrefab;
         [SerializeField] private Teleport _teleportPrefab;
 
-        private Game _game;
+        private GameModel _gameModel;
         private HUDView _hudView;
         private EnemySpawner _enemySpawner;
         private PlayerSpawner _playerSpawner;
@@ -33,22 +33,22 @@ namespace Management
 
         private void Start()
         {
-            _game.Initialize();
+            _gameModel.Initialize();
         }
 
         private void CreateGame()
         {
-            _game = new Game();
+            _gameModel = new GameModel();
             
-            _game.HealthCountUpdated += OnHealthCountUpdated;
-            _game.ScoreCountUpdated += OnScoreCountUpdated;
-            _game.MaxScoreCountUpdated += OnMaxScoreCountUpdated;
-            _game.GameEnded += OnGameEnded;
+            _gameModel.HealthCountUpdated += OnHealthCountUpdated;
+            _gameModel.ScoreCountUpdated += OnScoreCountUpdated;
+            _gameModel.MaxScoreCountUpdated += OnMaxScoreCountUpdated;
+            _gameModel.GameEnded += OnGameModelEnded;
         }
         
-        private void OnEnemyKilled() => _game.IncreaseScoreCount();
+        private void OnEnemyKilled() => _gameModel.IncreaseScoreCount();
         
-        private void OnPlayerDied() => _game.DecreaseHealthCount();
+        private void OnPlayerDied() => _gameModel.DecreaseHealthCount();
 
         private void OnHealthCountUpdated(int healthCount) => _hudView.SetHealthCount(healthCount);
 
@@ -56,7 +56,7 @@ namespace Management
         
         private void OnMaxScoreCountUpdated(int score) => _hudView.SetRecord(score);
 
-        private void OnGameEnded()
+        private void OnGameModelEnded()
         {
             _enemySpawner.enabled = false;
             _playerSpawner.enabled = false;
@@ -66,10 +66,10 @@ namespace Management
 
         private void OnDestroy()
         {
-            _game.HealthCountUpdated -= OnHealthCountUpdated;
-            _game.ScoreCountUpdated -= OnScoreCountUpdated;
-            _game.MaxScoreCountUpdated -= OnMaxScoreCountUpdated;
-            _game.GameEnded -= OnGameEnded;
+            _gameModel.HealthCountUpdated -= OnHealthCountUpdated;
+            _gameModel.ScoreCountUpdated -= OnScoreCountUpdated;
+            _gameModel.MaxScoreCountUpdated -= OnMaxScoreCountUpdated;
+            _gameModel.GameEnded -= OnGameModelEnded;
             
             _enemySpawner.EnemyKilled -= OnEnemyKilled;
             _playerSpawner.PlayerDied -= OnPlayerDied;

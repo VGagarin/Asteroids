@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Management
 {
-    internal sealed class Game
+    internal sealed class GameModel
     {
         private const string MaxScorePrefsKey = "MaxScorePrefsKey";
         private const int HealthCount = 4;
@@ -18,7 +18,7 @@ namespace Management
         private int _currentScore;
         private int _maxScore;
 
-        public Game()
+        public GameModel()
         {
             _currentHealthCount = HealthCount;
             _maxScore = PlayerPrefs.GetInt(MaxScorePrefsKey, 0);
