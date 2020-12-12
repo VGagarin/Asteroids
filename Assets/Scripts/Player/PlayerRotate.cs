@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace PlayerInput
+namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     internal sealed class PlayerRotate : MonoBehaviour

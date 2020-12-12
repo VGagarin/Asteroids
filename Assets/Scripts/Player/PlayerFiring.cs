@@ -1,7 +1,7 @@
 ﻿using Components;
 using UnityEngine;
 
-namespace PlayerInput
+namespace Player
 {
     [RequireComponent(typeof(Rigidbody2D))]
     internal sealed class PlayerFiring : MonoBehaviour
